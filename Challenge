@@ -1,0 +1,51 @@
+Challenge:
+
+Implement a GUI for the program using a library like tkinter.
+
+___________________________________________________________________
+
+## Name: Jeet Patel
+## Performed Date: 08-31-2023
+
+import tkinter as challenge
+from tkinter import messagebox
+
+class KeyConverterApp:
+    def __init__(self, root):
+        self.r = root
+        self.r.title("Key Converter")
+        
+        self.label = challenge.Label(root, text="Press a key:")
+        self.label.pack()
+        
+        self.ke = challenge.Entry(root)
+        self.ke.pack()
+        
+        self.cb = challenge.Button(root, text="Convert", command=self.convert_key)
+        self.cb.pack()
+        
+        self.ascii_label = challenge.Label(root, text="")
+        self.ascii_label.pack()
+        
+        self.bl = challenge.Label(root, text="")
+        self.bl.pack()
+        
+    def convert_key(self):
+        key = self.ke.get()
+        if len(key) != 1:
+            messagebox.showerror("Error", "Please press only one key.")
+            return
+        
+        ascii_val = ord(key)
+        binary_val = bin(ascii_val)[2:]
+        
+        self.ascii_label.config(text=f"ASCII value of '{key}': {ascii_val}")
+        self.bl.config(text=f"Binary representation: {binary_val}")
+
+def main():
+    root = challenge.Tk()
+    app = KeyConverterApp(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
